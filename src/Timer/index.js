@@ -20,7 +20,7 @@ const Timer = () => {
 
     return (
         <div>
-        {time? <p>{time}</p>: <p>NO</p>}
+        {time? <p>{time.toString()}</p>: <p>NO</p>}
         </div>
     )
 
