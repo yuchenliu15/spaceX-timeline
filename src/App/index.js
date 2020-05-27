@@ -1,10 +1,11 @@
 import React from 'react';
 import './index.css';
+import { Timer } from '../Timer';
 
 function App() {
   return (
     <div className="App">
-      <p>Hi</p>
+      <Timer />
     </div>
   );
 }
