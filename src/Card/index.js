@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
+const Card = ({ title, date }) => {
+    return(
+        <div>
+            <h2>{title}</h2>
+            <Timer goal={date} />
+        </div>
+    )
+}
+
 const getDiff = (goal) => {
     const diff = goal - new Date();
     return {
@@ -29,6 +38,6 @@ const Timer = ({ goal }) => {
 }
 
 export {
-    Timer
+    Card
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
-import { Timer } from '../Timer';
+import { Card } from '../Card';
 
 const spacex = `https://api.spacexdata.com/v3/launches/94`;
 
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      {data? <Timer goal={data['launch_date_utc']} />:<p>Wait a sec</p>}
+      {data? <Card title={data['mission_name']} date={data['launch_date_utc']} />:<p>Wait a sec</p>}
     </div>
   );
 }
