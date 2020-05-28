@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import './index.css';
 
-const Card = ({ title, date }) => {
+const Card = ({ title, date, onCardClick }) => {
     return(
         <div>
-            <h2>{title}</h2>
+            <h2 className="card-title" onClick={onCardClick}>{title}</h2>
             <Timer goal={date} />
         </div>
     )

@@ -9,6 +9,10 @@ const getData = async () => {
           .then(res => res.json())
 }
 
+const onCardClick = (event) => {
+  console.log('click!');
+}
+
 function App() {
 
   const [data, setData] = React.useState(null);
@@ -24,8 +28,8 @@ function App() {
 
   return (
     <div className="App">
-      {data? <Card title={data['mission_name']} date={data['launch_date_utc']} />: <span class="spinner-grow" role="status" ></span>
-}
+      {data? <Card title={data['mission_name']} date={data['launch_date_utc']} onCardClick={onCardClick} />
+      : <span class="spinner-grow" role="status" ></span>}
     </div>
   );
 }
