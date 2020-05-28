@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
 const getDiff = (goal) => {
-    if (goal)
-        return new Date(goal - new Date());
+    const diff = goal - new Date();
+    return {
+        // goal / seconds / minutes / hours / days
+        days: Math.floor(diff / 1000 / 60 / 60 / 24),
+        hours: (Math.floor(diff / 1000 / 60 / 60) % 24),
+        minutes: (Math.floor(diff / 1000 / 60) % 60),
+        seconds: (Math.floor(diff / 1000) % 60)
+    }
 }
 
 const Timer = ({ goal }) => {
 
     const goalDate = new Date(goal);
     const [countdown, setCoundown] = React.useState(null);
-    //const timeLeft = countdown.getHours() + ":" + countdown.getMinutes() + ":" + countdown.getSeconds();
 
     useEffect(() => {
         setTimeout(() => setCoundown(getDiff(goalDate)), 1000);
@@ -17,7 +22,7 @@ const Timer = ({ goal }) => {
 
     return (
         <div>
-            {countdown? <h1>{countdown.getDay() + ":" + countdown.getHours() + ":" + countdown.getMinutes() + ":" + countdown.getSeconds()}</h1>: <h1>Loading</h1>}
+            {countdown? <h1>{countdown.days + ":" + countdown.hours + ":" + countdown.minutes + ":" + countdown.seconds}</h1>: <h1>Loading</h1>}
         </div>
     )
 
