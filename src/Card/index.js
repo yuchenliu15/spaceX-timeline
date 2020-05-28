@@ -23,7 +23,7 @@ const getDiff = (goal) => {
 const Timer = ({ goal }) => {
 
     const goalDate = new Date(goal);
-    const [countdown, setCoundown] = React.useState(null);
+    const [countdown, setCoundown] = React.useState(getDiff(goalDate));
 
     useEffect(() => {
         setTimeout(() => setCoundown(getDiff(goalDate)), 1000);
@@ -31,7 +31,7 @@ const Timer = ({ goal }) => {
 
     return (
         <div>
-            {countdown? <h1>{countdown.days + ":" + countdown.hours + ":" + countdown.minutes + ":" + countdown.seconds}</h1>: <h1>Loading</h1>}
+            {<h1>{countdown.days + ":" + countdown.hours + ":" + countdown.minutes + ":" + countdown.seconds}</h1>}
         </div>
     )
 
