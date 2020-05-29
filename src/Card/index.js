@@ -3,10 +3,18 @@ import './index.css';
 
 const Card = ({ number, title, date, onCardClick }) => {
     return(
-        <div>
-            <h2 className="card-title" onClick={onCardClick} number={number}>{title}</h2>
+        <div className="card">
+        <div className="titleAndCount card-header">
+            <p className="card-title" onClick={onCardClick} number={number}>{title + ":"}</p>
+            <div class="alert alert-info" role="alert">
             <Timer goal={date} />
+            </div>
         </div>
+        <div className="card-body">
+
+        </div>
+        </div>
+
     )
 }
 
@@ -32,7 +40,7 @@ const Timer = ({ goal }) => {
 
     return (
         <div>
-            {<h1>{countdown.days + ":" + countdown.hours + ":" + countdown.minutes + ":" + countdown.seconds}</h1>}
+            {<p>{countdown.days + " days " + countdown.hours + ":" + countdown.minutes + ":" + countdown.seconds}</p>}
         </div>
     )
 

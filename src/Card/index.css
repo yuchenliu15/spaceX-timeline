@@ -1,3 +1,14 @@
 .card-title:hover {
    cursor: pointer;
 }
+
+.titleAndCount {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card {
+    width: 90%;
+    display: flex;
+}
