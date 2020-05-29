@@ -31,8 +31,10 @@ function App() {
   return (
     <div className="App">
       <div className="card-container">
-      {data? data.map((item, index) => <Card key={index} number={index} title={item['mission_name']} date={item['launch_date_utc']} onCardClick={onCardClick} />)
-      : <span className="spinner-grow" role="status" ></span>}
+      {data? 
+        data.map((item, index) => <Card key={index} number={index} title={item['mission_name']} date={item['launch_date_utc']} onCardClick={onCardClick} />)
+        :<span className="spinner-grow" role="status" ></span>
+      }
       </div>
     </div>
   );

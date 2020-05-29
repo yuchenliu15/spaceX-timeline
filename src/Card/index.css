@@ -8,6 +8,10 @@
     gap: 15px;
 }
 
+.titleAndCount .card-title{
+    max-width: 35%;
+}
+
 .card {
     width: 90%;
     display: flex;

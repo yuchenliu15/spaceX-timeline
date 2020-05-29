@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 
-const Card = ({ number, title, date, onCardClick }) => {
+const Card = ({ number, title, date, image, onCardClick }) => {
     return(
         <div className="card">
-        <div className="titleAndCount card-header">
-            <p className="card-title" onClick={onCardClick} number={number}>{title + ":"}</p>
-            <div class="alert alert-info" role="alert">
-            <Timer goal={date} />
+            <div className="titleAndCount card-header">
+                <p className="card-title" onClick={onCardClick} number={number}>{title + ":"}</p>
+                <div class="alert alert-info" role="alert">
+                <Timer className={"timer"} goal={date} />
+                </div>
             </div>
-        </div>
-        <div className="card-body">
+            <div className="card-body">
 
-        </div>
+            </div>
         </div>
 
     )
