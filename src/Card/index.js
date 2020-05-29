@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 
-const Card = ({ title, date, onCardClick }) => {
+const Card = ({ number, title, date, onCardClick }) => {
     return(
         <div>
-            <h2 className="card-title" onClick={onCardClick}>{title}</h2>
+            <h2 className="card-title" onClick={onCardClick} number={number}>{title}</h2>
             <Timer goal={date} />
         </div>
     )
@@ -24,7 +24,7 @@ const getDiff = (goal) => {
 const Timer = ({ goal }) => {
 
     const goalDate = new Date(goal);
-    const [countdown, setCoundown] = React.useState(getDiff(goalDate));
+    const [countdown, setCoundown] = useState(getDiff(goalDate));
 
     useEffect(() => {
         setTimeout(() => setCoundown(getDiff(goalDate)), 1000);
