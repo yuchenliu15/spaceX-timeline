@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 
+const progressbarMaxDay = 1000 * 60 * 60 * 24 * 150; //150 days
+
 const Card = ({ number, title, date, image, onCardClick }) => {
-    return(
+
+    date = new Date(date);
+    const progress = (date - new Date()) / progressbarMaxDay * 100;
+
+    return (
         <div className="card">
             <div className="titleAndCount card-header">
                 <p className="card-title" onClick={onCardClick} number={number}>{title + ":"}</p>
                 <div class="alert alert-info" role="alert">
-                <Timer className={"timer"} goal={date} />
+                    <Timer className={"timer"} goal={date} />
                 </div>
             </div>
             <div className="card-body">
-
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                     aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: `${progress}%`}}></div>
+                </div>
             </div>
         </div>
 
@@ -31,11 +40,10 @@ const getDiff = (goal) => {
 
 const Timer = ({ goal }) => {
 
-    const goalDate = new Date(goal);
-    const [countdown, setCoundown] = useState(getDiff(goalDate));
+    const [countdown, setCoundown] = useState(getDiff(goal));
 
     useEffect(() => {
-        setTimeout(() => setCoundown(getDiff(goalDate)), 1000);
+        setTimeout(() => setCoundown(getDiff(goal)), 1000);
     });
 
     return (
