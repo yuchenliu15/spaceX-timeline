@@ -1,5 +1,11 @@
 .card-title:hover {
    cursor: pointer;
+
+}
+
+.card-title {
+    border-radius: 20px !important;
+
 }
 
 .titleAndCount {
@@ -15,10 +21,12 @@
 .card {
     width: 90%;
     display: flex;
+    background-color: #547c9c;
+    color: white;
 }
 
 .progress-bar {
-    background-color: #3c6382;
+    background-color: #1289A7;
 }
 
 .alert {
@@ -29,4 +37,8 @@
 .alert p {
     color: white;
     
+}
+
+.rounded {
+    border-radius: 10px !important
 }

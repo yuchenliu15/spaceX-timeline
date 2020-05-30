@@ -6,7 +6,7 @@ const Menu = () => {
     return (
         <div className="menu">
             <Dropdown>
-                <Dropdown.Toggle className="dropdown-button" size="lg" variant="success" id="dropdown-basic">
+                <Dropdown.Toggle className="dropdown-button" size="lg" variant="none" id="dropdown-basic">
                     Sort by:
                 </Dropdown.Toggle>
 
@@ -18,7 +18,7 @@ const Menu = () => {
             </Dropdown>
             <Form.Group>
                 <Row>
-                    <Form.Control className="w-50" size="lg" type="text" placeholder="Large text" />
+                    <Form.Control className="search w-50" size="lg" type="text" />
                     <Form.Control className="submit" size="lg" type="submit" value="Search" />
                 </Row>
             </Form.Group>

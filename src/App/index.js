@@ -14,7 +14,7 @@ const getData = async () => {
 }
 
 const onCardClick = (event) => {
-  console.log(event.target.getAttribute('numbery'));
+  console.log(event.target.getAttribute('number'));
 }
 
 function App() {
