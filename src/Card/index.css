@@ -16,3 +16,17 @@
     width: 90%;
     display: flex;
 }
+
+.progress-bar {
+    background-color: #3c6382;
+}
+
+.alert {
+    background-color: #1289A7;
+    
+}
+
+.alert p {
+    color: white;
+    
+}

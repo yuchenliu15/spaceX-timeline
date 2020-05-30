@@ -12,13 +12,13 @@ const Card = ({ number, title, date, image, onCardClick }) => {
         <div className="card">
             <div className="titleAndCount card-header">
                 <p className="card-title" onClick={onCardClick} number={number}>{title + ":"}</p>
-                <div class="alert alert-info" role="alert">
+                <div className="alert" role="alert">
                     <Timer className={"timer"} goal={date} />
                 </div>
             </div>
             <div className="card-body">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                <div className="progress">
+                    <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                      aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: `${progress}%`}}></div>
                 </div>
             </div>

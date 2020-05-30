@@ -1,8 +1,15 @@
 .card-container {
-  width: 70%;
+
   margin: auto;
   display: grid;
   grid-template-columns: repeat(3,33%);
   grid-gap: 20px;
   justify-items: center;
+}
+
+.body-container {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }

@@ -6,7 +6,12 @@
     color: white;
 }
 
-.btn {
+.navbar-brand:hover {
+    color: white;
+}
+
+.navbar .btn {
     background-color: transparent;
     color: white;
 }
+

@@ -1,0 +1,17 @@
+.menu {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin: 20px;
+}
+
+.menu .submit {
+    margin-left: 20px;
+    width: 10%;
+    color: white;
+    background-color: #3c6382;
+
+}
+
+.menu .dropdown-button {
+    background-color: #3c6382;
+}

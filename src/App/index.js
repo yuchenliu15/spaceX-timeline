@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
-import { Card } from '../Card';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Navigation';
 import dd from './testApiData.js'; 
+import { Card } from '../Card';
 import { Navigation } from '../Navigation';
+import { Menu } from '../Menu';
 
 const spacex = `https://api.spacexdata.com/v3/launches/upcoming`;
 
@@ -33,12 +34,16 @@ function App() {
   return (
     <div className="App">
       <Navigation />
-      <div className="card-container">
-      {data? 
-        data.map((item, index) => <Card key={index} number={index} title={item['mission_name']} date={item['launch_date_utc']} onCardClick={onCardClick} />)
-        :<span className="spinner-grow" role="status" ></span>
-      }
+      <div className="body-container">
+        <Menu />
+        <div className="card-container">
+        {data? 
+          data.map((item, index) => <Card key={index} number={index} title={item['mission_name']} date={item['launch_date_utc']} onCardClick={onCardClick} />)
+          :<span className="spinner-grow" role="status" ></span>
+        }
+        </div>
       </div>
+
     </div>
   );
 }
