@@ -1,0 +1,12 @@
+.navbar {
+    background-color: #3c6382;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.btn {
+    background-color: transparent;
+    color: white;
+}
