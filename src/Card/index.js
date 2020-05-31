@@ -5,7 +5,6 @@ const progressbarMaxDay = 1000 * 60 * 60 * 24 * 150; //150 days
 
 const Card = ({ number, title, date, image, onCardClick }) => {
 
-    date = new Date(date);
     const progress = (date - new Date()) / progressbarMaxDay * 100;
 
     return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {sortBy} from 'lodash';
+import { sortBy } from 'lodash';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Navigation';
@@ -12,7 +12,7 @@ const spacex = `https://api.spacexdata.com/v3/launches/upcoming`;
 const Sorts = {
   latest: list => sortBy(list, 'date'),
   oldest: list => sortBy(list, 'date').reverse(),
-  name: list => sortBy(list, 'title') 
+  name: list => sortBy(list, 'title')
 }
 
 const getData = async () => {
@@ -26,21 +26,33 @@ const onCardClick = (event) => {
 function App() {
 
   const [data, setData] = useState([]);
+  const [dataForCard, setDataForCard] = useState([]);
   const [activeSort, setActiveSort] = useState('latest');
-  let list = data.map(item => ({
-    name: item['mission_name'],
-    date: item['launch_date_local']
-  }));
+
+  const list = Sorts[activeSort](dataForCard);
 
   const onSortChange = (event) => {
-    setActiveSort(event.target.text);
+    const newSort = event.target.text;
+    if (newSort !== activeSort) {
+      setActiveSort(newSort);
+    }
   }
 
   useEffect(() => {
     (async () => {
-        setData(await getData());
+      const res = await getData();
+      setData(res);
+      setDataForCard(
+        res
+          .filter(item => ((new Date(item['launch_date_local']) - new Date()) > 0))
+          .map(item => ({
+            name: item['mission_name'],
+            date: new Date(item['launch_date_local'])
+          })));
+
     })();
   }, []);
+  console.log(dataForCard)
 
   return (
     <div className="App">
@@ -48,10 +60,10 @@ function App() {
       <div className="body-container">
         <Menu sortString={activeSort} onSortChange={onSortChange} />
         <div className="card-container">
-        {list.length? 
-          list.map((item, index) => <Card key={index} number={index} title={item['name']} date={item['date']} onCardClick={onCardClick} />)
-          :<span className="spinner-grow" role="status" ></span>
-        }
+          {list.length ?
+            list.map((item, index) => <Card key={index} number={index} title={item['name']} date={item['date']} onCardClick={onCardClick} />)
+            : <span className="spinner-grow" role="status" ></span>
+          }
         </div>
       </div>
 
