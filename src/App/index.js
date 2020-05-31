@@ -3,7 +3,6 @@ import {sortBy} from 'lodash';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Navigation';
-import dd from './testApiData.js'; 
 import { Card } from '../Card';
 import { Navigation } from '../Navigation';
 import { Menu } from '../Menu';
@@ -24,25 +23,24 @@ const onCardClick = (event) => {
   console.log(event.target.getAttribute('number'));
 }
 
-
-
 function App() {
 
-  const [data, setData] = useState(dd);
+  const [data, setData] = useState([]);
   const [activeSort, setActiveSort] = useState('latest');
+  let list = data.map(item => ({
+    name: item['mission_name'],
+    date: item['launch_date_local']
+  }));
 
   const onSortChange = (event) => {
     setActiveSort(event.target.text);
   }
 
-  // useEffect(() => {
-  //   (async () => {
-  //     setTimeout(async ()=> {
-  //       setData(await getData());
-
-  //     },2000)
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+        setData(await getData());
+    })();
+  }, []);
 
   return (
     <div className="App">
@@ -50,8 +48,8 @@ function App() {
       <div className="body-container">
         <Menu sortString={activeSort} onSortChange={onSortChange} />
         <div className="card-container">
-        {data? 
-          data.map((item, index) => <Card key={index} number={index} title={item['mission_name']} date={item['launch_date_local']} onCardClick={onCardClick} />)
+        {list.length? 
+          list.map((item, index) => <Card key={index} number={index} title={item['name']} date={item['date']} onCardClick={onCardClick} />)
           :<span className="spinner-grow" role="status" ></span>
         }
         </div>
