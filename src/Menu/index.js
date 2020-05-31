@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import { Dropdown, Form, Row } from 'react-bootstrap';
 
-const Menu = ({sortString, onSortChange}) => {
+const Menu = ({sortString, onSortChange, onSearchChange, onSearchSubmit}) => {
     return (
         <div className="menu">
             <Dropdown>
@@ -16,10 +16,10 @@ const Menu = ({sortString, onSortChange}) => {
                     <Dropdown.Item href="#/action-3" value="name" onClick={onSortChange}>name</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            <Form.Group className="search-div">
+            <Form.Group className="search-div" >
                 <Row>
-                    <Form.Control className="search" size="lg" type="text" />
-                    <Form.Control className="submit" size="lg" type="submit" value="Search" />
+                    <Form.Control className="search" size="lg" type="text" placeholder="flight number" onChange={onSearchChange} />
+                    <Form.Control className="submit" size="lg" type="submit" value="Search" onClick={onSearchSubmit} />
                 </Row>
             </Form.Group>
         </div>
