@@ -16,9 +16,9 @@ const Menu = ({sortString, onSortChange}) => {
                     <Dropdown.Item href="#/action-3" value="name" onClick={onSortChange}>name</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            <Form.Group>
+            <Form.Group className="search-div">
                 <Row>
-                    <Form.Control className="search w-50" size="lg" type="text" />
+                    <Form.Control className="search" size="lg" type="text" />
                     <Form.Control className="submit" size="lg" type="submit" value="Search" />
                 </Row>
             </Form.Group>

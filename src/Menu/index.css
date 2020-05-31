@@ -6,7 +6,7 @@
 
 .menu .submit {
     margin-left: 20px;
-    width: 10%;
+    width: 90px;
     color: white;
     background-color: #3c6382;
 
@@ -22,4 +22,18 @@
     background-color: #547c9c;
     color: white;
     border-color: #547c9c;
+    width: 50%;
 }
+
+@media only screen and (max-width: 1100px) {
+    .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+    .search-div .row {
+        margin: 0;
+    }
+  }
