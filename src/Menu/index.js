@@ -18,7 +18,7 @@ const Menu = ({sortString, onSortChange, onSearchChange, onSearchSubmit}) => {
             </Dropdown>
             <Form.Group className="search-div" >
                 <Row>
-                    <Form.Control className="search" size="lg" type="text" placeholder="flight number" onChange={onSearchChange} />
+                    <Form.Control className="search" size="lg" type="text" placeholder="flight number...default to upcoming" onChange={onSearchChange} />
                     <Form.Control className="submit" size="lg" type="submit" value="Search" onClick={onSearchSubmit} />
                 </Row>
             </Form.Group>
