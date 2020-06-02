@@ -38,7 +38,7 @@ function App() {
   const CardWithLength = ({ list, ...props }) => {
 
     if (Array.isArray(list) && list.length > 0) {
-      return list.map((item, index) => { console.log(index); return <Card key={index} title={item['name']} date={item['date']} onCardClick={onCardClick(index)}  {...props} /> })
+      return list.map((item, index) => <Card key={index} title={item['name']} date={item['date']} onCardClick={onCardClick(index)}  {...props} />);
     }
     else if (!Array.isArray(list) && typeof list === 'object' && list !== null) {
       return <Card className="single" title={list['name']} date={list['date']} {...props} />
