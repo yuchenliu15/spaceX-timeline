@@ -6,6 +6,7 @@ import '../Navigation';
 import { Card } from '../Card';
 import { Navigation } from '../Navigation';
 import { Menu } from '../Menu';
+import { About } from '../About';
 
 const PATH_BASE = 'https://api.spacexdata.com/v3';
 const LAUNCH_UPCOMING = '/launches/upcoming';
@@ -17,26 +18,12 @@ const Sorts = {
   name: list => sortBy(list, 'title')
 }
 
-const withLength = (Component) => ({ list, ...props }) => {
-
-  if(Array.isArray(list) && list.length > 0) {
-    return list.map((item, index) => <Component key={index} number={index} title={item['name']} date={item['date']} {...props} />)
-  }
-  else if (!Array.isArray(list) && typeof list === 'object' && list !== null) {
-    return <Component className="single" title={list['name']} date={list['date']} {...props} />
-  }
-  else {
-    return <span className="spinner-grow" role="status" ></span>
-  }
-
-}
-
 const getData = async (url) => {
-  return fetch(url).then(res => res.json())
+  return fetch(url).then(res => res.json());
 }
 
-const onCardClick = event => {
-  console.log(event.target.getAttribute('number')+'haahhahha');
+const isObjectEmpty = (obj) => {
+  return Object.keys(obj).length === 0;
 }
 
 function App() {
@@ -45,9 +32,33 @@ function App() {
   const [dataForCard, setDataForCard] = useState([]);
   const [activeSort, setActiveSort] = useState('latest');
   const [search, setSearch] = useState('');
+  const [aboutData, setAboutData] = useState({});
 
   const list = Array.isArray(dataForCard) ? Sorts[activeSort](dataForCard) : dataForCard;
-  const CardWithLength = withLength(Card);
+  const CardWithLength = ({ list, ...props }) => {
+
+    if (Array.isArray(list) && list.length > 0) {
+      return list.map((item, index) => { console.log(index); return <Card key={index} title={item['name']} date={item['date']} onCardClick={onCardClick(index)}  {...props} /> })
+    }
+    else if (!Array.isArray(list) && typeof list === 'object' && list !== null) {
+      return <Card className="single" title={list['name']} date={list['date']} {...props} />
+    }
+    else {
+      return <span className="spinner-grow" role="status" ></span>
+    }
+
+  }
+
+  const onCardClick = index => event => {
+    const name = list[index].name;
+    for (let index in data) {
+      const item = data[index];
+      if (item['mission_name'] === name) {
+        setAboutData(item);
+      }
+
+    }
+  }
 
   const onSortChange = (event) => {
     const newSort = event.target.text;
@@ -61,7 +72,7 @@ function App() {
   }
 
   const onSearchSubmit = () => {
-    if(search) {
+    if (search) {
       updateData(`${PATH_BASE}/launches/${search}`);
     } else {
       updateData(DEFAULT_URL);
@@ -96,9 +107,16 @@ function App() {
       <Navigation />
       <div className="body-container">
         <Menu sortString={activeSort} onSortChange={onSortChange} onSearchChange={onSearchChange} onSearchSubmit={onSearchSubmit} />
-        <div className="card-container">
-          <CardWithLength list={list} onCardClick={onCardClick} />
+        <div>
+        {!isObjectEmpty(aboutData)
+          ? <About data={aboutData} />
+          : <div className="card-container">
+            <CardWithLength list={list} />
+          </div>
+        }
         </div>
+
+
       </div>
 
     </div>
