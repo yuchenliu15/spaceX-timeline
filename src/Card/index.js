@@ -5,14 +5,16 @@ const progressbarMaxDay = 1000 * 60 * 60 * 24 * 150; //150 days
 
 const Card = ({ number, title, date, image, onCardClick }) => {
 
-    const progress = (date - new Date()) / progressbarMaxDay * 100;
+    const progress = (1 - (date - new Date()) / progressbarMaxDay) * 100;
 
     return (
         <div className="card rounded">
             <div className="titleAndCount card-header">
-                <p className="card-title" onClick={onCardClick} number={number}>{title + ":"}</p>
-                <div className="alert rounded" role="alert">
-                    <Timer className={"timer"} goal={date} />
+                <div className="card-title" onClick={onCardClick} number={number}>
+                    <p>{title}</p>
+                </div>
+                <div className="alert rounded timer" role="alert">
+                    <Timer goal={date} />
                 </div>
             </div>
             <div className="card-body">
@@ -47,7 +49,7 @@ const Timer = ({ goal }) => {
 
     return (
         <div>
-            {<p>{countdown.days + " days " + countdown.hours + ":" + countdown.minutes + ":" + countdown.seconds}</p>}
+            {<p className="h3">{countdown.days + " days " + countdown.hours + ":" + countdown.minutes + ":" + countdown.seconds}</p>}
         </div>
     )
 

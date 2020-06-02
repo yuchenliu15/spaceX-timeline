@@ -15,3 +15,11 @@
     color: white;
 }
 
+.btn .link:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.btn .link:hover {
+    text-decoration: none;
+}

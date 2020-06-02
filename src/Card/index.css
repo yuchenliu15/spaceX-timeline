@@ -4,18 +4,14 @@
 }
 
 .card-title {
-    border-radius: 20px !important;
-
+    font-weight: bold;
 }
 
 .titleAndCount {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 15px;
-}
-
-.titleAndCount .card-title{
-    max-width: 35%;
 }
 
 .card {
@@ -31,12 +27,14 @@
 
 .alert {
     background-color: #1289A7;
-    
+    text-align: center;
+    max-width: auto;
 }
 
 .alert p {
     color: white;
-    
+    margin-left: -20%;
+    margin-right: -20%;
 }
 
 .rounded {
