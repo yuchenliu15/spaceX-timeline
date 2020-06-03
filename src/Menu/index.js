@@ -10,7 +10,7 @@ const Menu = ({ sortString, onSortChange, onSearchChange, onSearchSubmit, onBack
             {
                 isAboutActive
                     ? <div className="menu">
-                        <button className="btn btn-light back-button" size="lg"><FontAwesomeIcon icon={faArrowLeft} /></button>
+                        <button className="btn btn-light back-button" size="lg" onClick={onBackButtonClick} ><FontAwesomeIcon icon={faArrowLeft} /></button>
                     </div>
                     : <div className="menu">
                         <Dropdown>

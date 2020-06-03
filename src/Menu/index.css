@@ -23,7 +23,6 @@
     color: white;
 }
 
-
 .menu .search {
     background-color: #547c9c;
     color: white;
@@ -31,7 +30,7 @@
     width: 50%;
 }
 .menu .search::placeholder {
-    color: white
+    color: #3c6382;
 }
 
 @media only screen and (max-width: 1100px) {
