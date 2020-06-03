@@ -7,7 +7,7 @@
 }
 
 .navbar-brand:hover {
-    color: white;
+    cursor: pointer;
 }
 
 .btn {

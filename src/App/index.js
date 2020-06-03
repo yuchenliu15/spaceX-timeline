@@ -49,6 +49,15 @@ function App() {
 
   }
 
+  const onBrandClick = () => {
+    if(isObjectEmpty(aboutData)){
+      updateData(DEFAULT_URL);
+    }
+    else {
+      setAboutData({});
+    }
+  }
+
   const onBackButtonClick = () => {
     setAboutData({});
   }
@@ -112,7 +121,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
+      <Navigation onBrandClick={onBrandClick} />
       <div className="body-container">
         <Menu sortString={activeSort} onSortChange={onSortChange} onSearchChange={onSearchChange} onSearchSubmit={onSearchSubmit}
           onBackButtonClick={onBackButtonClick} isAboutActive={isObjectEmpty(aboutData) ? false : true} />
