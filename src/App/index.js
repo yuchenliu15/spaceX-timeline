@@ -41,7 +41,7 @@ function App() {
       return list.map((item, index) => <Card key={index} title={item['name']} date={item['date']} onCardClick={onCardClick(index)}  {...props} />);
     }
     else if (!Array.isArray(list) && typeof list === 'object' && list !== null) {
-      return <Card className="single" title={list['name']} date={list['date']} {...props} />
+      return <Card className="single" title={list['name']} date={list['date']} onCardClick={onCardClick(null)} {...props} />
     }
     else {
       return <span className="spinner-grow" role="status" ></span>
@@ -53,15 +53,19 @@ function App() {
     setAboutData({});
   }
 
-  const onCardClick = index => event => {
-    const name = list[index].name;
-    for (let index in data) {
-      const item = data[index];
-      if (item['mission_name'] === name) {
-        setAboutData(item);
+  const onCardClick = index => () => {
+    if(index === null) {
+      setAboutData(data);
+    } else {
+      const name = list[index].name;
+      for (let index in data) {
+        const item = data[index];
+        if (item['mission_name'] === name) {
+          setAboutData(item);
+        }
       }
-
     }
+
   }
 
   const onSortChange = (event) => {
