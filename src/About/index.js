@@ -17,11 +17,13 @@ const About = ({ data }) => {
     }
 
     return (
-        <div>
-            <h1>Mission: {data['mission_name']}</h1>
-            <h3>Rocket: {data['rocket']['rocket_name']}</h3>
-            <h3>Result: {launchResult(data['launch_success'])}</h3>
-            <Links links={data['links']} />
+        <div className="about-container">
+            <div className="alert rounded">
+                <h1>Mission: {data['mission_name']}</h1> <br/>
+                <h3>Rocket: {data['rocket']['rocket_name']}</h3>
+                <h3>Status: {launchResult(data['launch_success'])}</h3>
+                <Links links={data['links']} />
+            </div>
         </div>
     )
 }
@@ -41,22 +43,21 @@ const Links = ({ links }) => {
                 }
             } else if (val) {
                 list.push(<li><a href={val}>{val}</a></li>);
-                console.log(key)
-
             }
         }
         return list;
     }
 
-    if (links) {
-        return (
-            <div>
-                <h3>Links: </h3>
-                <ul>{getLinks()}</ul>
-            </div>
+    const displayLinks = getLinks();
 
-        )
-    }
+    return (
+        (displayLinks.length > 0)
+        ? <div>
+            <h3>Links: </h3>
+            <ul>{displayLinks}</ul>
+        </div>
+        : null
+    )
 
 }
 
