@@ -51,7 +51,7 @@ function App() {
     }
 
   }
-  console.log(data)
+
   const onBrandClick = () => {
     if(isObjectEmpty(aboutData)){
       updateData(DEFAULT_URL);

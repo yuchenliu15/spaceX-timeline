@@ -28,6 +28,11 @@ const About = ({ data }) => {
 
 const Links = ({ links }) => {
 
+    const getExcerpt = (string, length) => {
+        const filter = string.match(/^https:\/\/(.*)/);
+        return filter? `${filter[1].substring(0,length)}...`: `${string.substring(0,length)}...`;
+    }
+
     const getLinks = () => {
         const list = [];
         for (let key in links) {
@@ -35,12 +40,12 @@ const Links = ({ links }) => {
 
             if (Array.isArray(val)) {
                 if (val.length > 0)
-                    val.forEach(item => list.push(<li><a href={item}>{item}</a></li>));
+                    val.forEach(item => list.push(<li key={key} ><a href={item}>{getExcerpt(item, 20)}</a></li>));
                 else {
                     continue;
                 }
             } else if (val) {
-                list.push(<li><a href={val}>{val}</a></li>);
+                list.push(<li key={key}><a href={val}>{getExcerpt(val, 20)}</a></li>);
             }
         }
         return list;
