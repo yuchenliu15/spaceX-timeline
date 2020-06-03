@@ -10,7 +10,12 @@
     color: white;
 }
 
-.navbar .btn {
+.btn {
+    background-color: transparent;
+    color: white;
+}
+
+.btn:hover {
     background-color: transparent;
     color: white;
 }

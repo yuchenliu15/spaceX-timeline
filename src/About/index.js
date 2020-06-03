@@ -3,8 +3,6 @@ import './index.css';
 
 const About = ({ data }) => {
 
-    console.log(data)
-
     const launchResult = (launch) => {
         if (launch === null) {
             return 'upcoming...☕';

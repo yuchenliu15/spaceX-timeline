@@ -12,11 +12,17 @@
 
 }
 
+.menu .back-button {
+    margin-left: -20px;
+    max-width: 40px;
+}
+
 .menu .dropdown-button {
     background-color: #3c6382;
     border-color: white;
     color: white;
 }
+
 
 .menu .search {
     background-color: #547c9c;

@@ -49,6 +49,10 @@ function App() {
 
   }
 
+  const onBackButtonClick = () => {
+    setAboutData({});
+  }
+
   const onCardClick = index => event => {
     const name = list[index].name;
     for (let index in data) {
@@ -106,14 +110,15 @@ function App() {
     <div className="App">
       <Navigation />
       <div className="body-container">
-        <Menu sortString={activeSort} onSortChange={onSortChange} onSearchChange={onSearchChange} onSearchSubmit={onSearchSubmit} />
+        <Menu sortString={activeSort} onSortChange={onSortChange} onSearchChange={onSearchChange} onSearchSubmit={onSearchSubmit}
+          onBackButtonClick={onBackButtonClick} isAboutActive={isObjectEmpty(aboutData) ? false : true} />
         <div>
-        {!isObjectEmpty(aboutData)
-          ? <About data={aboutData} />
-          : <div className="card-container">
-            <CardWithLength list={list} />
-          </div>
-        }
+          {isObjectEmpty(aboutData)
+            ? <div className="card-container">
+              <CardWithLength list={list} />
+            </div>
+            :<About data={aboutData} />
+          }
         </div>
 
 
