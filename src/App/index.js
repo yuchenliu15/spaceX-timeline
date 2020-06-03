@@ -37,7 +37,10 @@ function App() {
   const list = Array.isArray(dataForCard) ? Sorts[activeSort](dataForCard) : dataForCard;
   const CardWithLength = ({ list, ...props }) => {
 
-    if (Array.isArray(list) && list.length > 0) {
+    if(!list) {
+      return <h1 className="not-found">No missions found...</h1>;
+    }
+    else if (Array.isArray(list) && list.length > 0) {
       return list.map((item, index) => <Card key={index} title={item['name']} date={item['date']} onCardClick={onCardClick(index)}  {...props} />);
     }
     else if (!Array.isArray(list) && typeof list === 'object' && list !== null) {
@@ -48,7 +51,7 @@ function App() {
     }
 
   }
-
+  console.log(data)
   const onBrandClick = () => {
     if(isObjectEmpty(aboutData)){
       updateData(DEFAULT_URL);
@@ -98,6 +101,12 @@ function App() {
 
   const updateData = async (url) => {
     const res = await getData(url);
+
+    if(res.error === 'Not Found') {
+      setDataForCard(null);
+      return;
+    }
+
     setData(res);
     setDataForCard(
       Array.isArray(res) ?

@@ -3,6 +3,9 @@
   color: white;
 }
 
+.not-found {
+  grid-column: 1/4;
+}
 
 .card-container {
   width: 100%;
