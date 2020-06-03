@@ -3,14 +3,14 @@ import './index.css';
 
 const progressbarMaxDay = 1000 * 60 * 60 * 24 * 150; //150 days
 
-const Card = ({ number, title, date, onCardClick }) => {
+const Card = ({ title, date, onCardClick }) => {
 
     const progress = (1 - (date - new Date()) / progressbarMaxDay) * 100;
 
     return (
-        <div className="card rounded">
+        <div className="card rounded" onClick={onCardClick} >
             <div className="titleAndCount card-header">
-                <div className="card-title" onClick={onCardClick} number={number}>
+                <div className="card-title" onClick={onCardClick}>
                     <p>{title}</p>
                 </div>
                 <div className="alert rounded timer" role="alert">
