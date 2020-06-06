@@ -31,4 +31,8 @@
   .card-container {
     grid-template-columns: 100%;
   }
+
+  .body-container {
+    width: 90%;
+  }
 }
