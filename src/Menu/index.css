@@ -42,7 +42,7 @@
         row-gap: 10px;
     }
     .search-div .row {
-        margin: 0;
+        margin: 10px;
     }
   }
 
@@ -55,7 +55,7 @@
         row-gap: 10px;
     }
     .search-div .row {
-        margin: 0;
+        margin: 10px;
     }
     .menu .submit {
         margin-left: 10px;

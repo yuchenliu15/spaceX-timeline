@@ -3,7 +3,7 @@ import { sortBy } from 'lodash';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Navigation';
-import { Card } from '../Card';
+import { Card, DaysOnlyContext } from '../Card';
 import { Navigation } from '../Navigation';
 import { Menu } from '../Menu';
 import { About } from '../About';
@@ -11,6 +11,7 @@ import { About } from '../About';
 const PATH_BASE = 'https://api.spacexdata.com/v3';
 const LAUNCH_UPCOMING = '/launches/upcoming';
 const DEFAULT_URL = `${PATH_BASE}${LAUNCH_UPCOMING}`;
+const showLaunchSeconds = 3;
 
 const Sorts = {
   latest: list => sortBy(list, 'date'),
@@ -33,15 +34,22 @@ function App() {
   const [activeSort, setActiveSort] = useState('latest');
   const [search, setSearch] = useState('');
   const [aboutData, setAboutData] = useState({});
-
   const list = Array.isArray(dataForCard) ? Sorts[activeSort](dataForCard) : dataForCard;
+
   const CardWithLength = ({ list, ...props }) => {
 
-    if(!list) {
+    if (!list) {
       return <h1 className="not-found">No missions found...</h1>;
     }
     else if (Array.isArray(list) && list.length > 0) {
-      return list.map((item, index) => <Card key={index} title={item['name']} date={item['date']} onCardClick={onCardClick(index)}  {...props} />);
+      return list.map((item, index) => {
+        const isAfterShowLaunchSeconds = (showLaunchSeconds - 1) < index;
+        return (
+          <DaysOnlyContext.Provider value={isAfterShowLaunchSeconds}>
+            <Card key={index} title={item['name']} date={item['date']} onCardClick={onCardClick(index)} {...props} />
+          </DaysOnlyContext.Provider>
+        );
+      });
     }
     else if (!Array.isArray(list) && typeof list === 'object' && list !== null) {
       return <Card className="single" title={list['name']} date={list['date']} onCardClick={onCardClick(null)} {...props} />
@@ -53,7 +61,7 @@ function App() {
   }
 
   const onBrandClick = () => {
-    if(isObjectEmpty(aboutData)){
+    if (isObjectEmpty(aboutData)) {
       updateData(DEFAULT_URL);
     }
     else {
@@ -66,7 +74,7 @@ function App() {
   }
 
   const onCardClick = index => () => {
-    if(index === null) {
+    if (index === null) {
       setAboutData(data);
     } else {
       const name = list[index].name;
@@ -102,7 +110,7 @@ function App() {
   const updateData = async (url) => {
     const res = await getData(url);
 
-    if(res.error === 'Not Found') {
+    if (res.error === 'Not Found') {
       setDataForCard(null);
       return;
     }
@@ -139,7 +147,7 @@ function App() {
             ? <div className="card-container">
               <CardWithLength list={list} />
             </div>
-            :<About data={aboutData} />
+            : <About data={aboutData} />
           }
         </div>
 
