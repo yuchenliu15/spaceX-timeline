@@ -1,0 +1,27 @@
+.footer {
+    height: 130px;
+    line-height: 100px;
+    text-align: center;
+    text-justify: center;
+    margin: auto;
+}
+
+.footer a {
+    color: #1289A7;
+}
+
+.footer a:visited {
+    color: #1289A7;
+}
+
+@media only screen and (max-width: 600px) {
+    .footer {
+        height: 100px;
+        line-height: 30px;
+
+    }
+
+    .footer p {
+        margin-top: 30px;
+    }
+}
