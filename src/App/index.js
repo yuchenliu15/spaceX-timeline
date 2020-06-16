@@ -7,6 +7,7 @@ import { Card, DaysOnlyContext } from '../Card';
 import { Navigation } from '../Navigation';
 import { Menu } from '../Menu';
 import { About } from '../About';
+import {Footer} from '../Footer';
 
 const PATH_BASE = 'https://api.spacexdata.com/v3';
 const LAUNCH_UPCOMING = '/launches/upcoming';
@@ -150,10 +151,8 @@ function App() {
             : <About data={aboutData} />
           }
         </div>
-
-
       </div>
-
+      <Footer />
     </div>
   );
 }
