@@ -46,8 +46,8 @@ function App() {
       return list.map((item, index) => {
         const isAfterShowLaunchSeconds = (showLaunchSeconds - 1) < index;
         return (
-          <DaysOnlyContext.Provider value={isAfterShowLaunchSeconds}>
-            <Card key={index} title={item['name']} date={item['date']} onCardClick={onCardClick(index)} {...props} />
+          <DaysOnlyContext.Provider value={isAfterShowLaunchSeconds} key={item['name']}>
+            <Card title={item['name']} date={item['date']} onCardClick={onCardClick(index)} {...props} />
           </DaysOnlyContext.Provider>
         );
       });
