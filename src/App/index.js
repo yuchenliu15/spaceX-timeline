@@ -38,7 +38,6 @@ function App() {
   const list = Array.isArray(dataForCard) ? Sorts[activeSort](dataForCard) : dataForCard;
 
   const CardWithLength = ({ list, ...props }) => {
-
     if (!list) {
       return <h1 className="not-found">No missions found...</h1>;
     }
@@ -110,7 +109,6 @@ function App() {
 
   const updateData = async (url) => {
     const res = await getData(url);
-
     if (res.error === 'Not Found') {
       setDataForCard(null);
       return;
@@ -120,7 +118,6 @@ function App() {
     setDataForCard(
       Array.isArray(res) ?
         res
-          .filter(item => ((new Date(item['launch_date_local']) - new Date()) > 0))
           .map(item => ({
             name: item['mission_name'],
             date: new Date(item['launch_date_local'])
