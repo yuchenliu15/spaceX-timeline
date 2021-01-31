@@ -3,24 +3,26 @@ import './index.css';
 
 const About = ({ data }) => {
 
-    const launchResult = (launch) => {
+    const launchResult = (launch, date) => {
+        if(date - Date.now() < 0) {
+            return "launched";
+        }
         if (launch === null) {
             return 'upcoming...☕';
         }
-        else if (launch === true) {
+        if (launch === true) {
             return 'success✔';
-        } else {
-            return 'fail❌';
         }
+        return 'fail❌';
     }
 
     return (
         <div className="about-container">
             <div className="alert rounded">
                 <h1>{data['mission_name']}</h1> <br/>
-                <h3>Rocket: <span class="about-data">{data['rocket']['rocket_name']}</span></h3>
-                <h3>Status: <span class="about-data">{launchResult(data['launch_success'])}</span></h3>
-                <h3>Location: <span class="about-data">{data['launch_site']['site_name_long']}</span></h3>
+                <h3>Rocket: <span className="about-data">{data['rocket']['rocket_name']}</span></h3>
+                <h3>Status: <span className="about-data">{launchResult(data['launch_success'], new Date(data['launch_date_local']))}</span></h3>
+                <h3>Location: <span className="about-data">{data['launch_site']['site_name_long']}</span></h3>
                 <Links links={data['links']} />
             </div>
         </div>
